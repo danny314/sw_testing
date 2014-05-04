@@ -1,0 +1,20 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <!--
+    This jelly script is used for per-project configuration.
+
+    See global.jelly for a general discussion about jelly script.
+  -->
+
+ 
+    Creates a text field that shows the value of the "Korat Finitization Parameters" property.
+    When submitted, it will be passed to the corresponding constructor parameter.  
+    
+  <f:entry title="Korat Finitization Parameters" field="finparams">
+  	<f:textbox/>
+  </f:entry>
+  
+  <f:entry>
+   	<f:checkbox name="forceKoratRun" checked="${instance.forceKoratRun}" title="Force Korat Run"/>
+  </f:entry>
+ 
+</j:jelly>
