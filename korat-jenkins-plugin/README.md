@@ -1,1 +1,1 @@
-A project to bring Korat test generation into Jenkins CI.
+A Jenkins plugin to incorporate test input generation using Korat. This plugin and its associated project 'sortedlist' demonstrate how test input can be generated automatically by the plugin and supplied to the tests at build time in Jenkins.
