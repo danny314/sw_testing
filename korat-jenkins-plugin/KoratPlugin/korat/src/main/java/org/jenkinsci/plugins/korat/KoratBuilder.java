@@ -24,23 +24,6 @@ import net.sf.json.JSONObject;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.StaplerRequest;
 
-/**
- * Sample {@link Builder}.
- *
- * <p>
- * When the user configures the project and enables this builder,
- * {@link DescriptorImpl#newInstance(StaplerRequest)} is invoked
- * and a new {@link KoratBuilder} is created. The created
- * instance is persisted to the project configuration XML by using
- * XStream, so this allows you to use instance fields (like {@link #name})
- * to remember the configuration.
- *
- * <p>
- * When a build is performed, the {@link #perform(AbstractBuild, Launcher, BuildListener)}
- * method will be invoked. 
- *
- * @author Kohsuke Kawaguchi
- */
 public class KoratBuilder extends Builder {
 
     public final String finparams;   
@@ -106,37 +89,20 @@ public class KoratBuilder extends Builder {
     }
     
     @Override
-    // This is where you 'build' the project.
     public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener) {
-    	//This is for debugging. Probably some other way is better to get filename and function name
     	String funcname = "perform";
     	String filename = "KoratBuilder";
         return true;
     }
     
-    // Overridden for better type safety.
-    // If your plugin doesn't really define any property on Descriptor,
-    // you don't have to do this.
     @Override
     public DescriptorImpl getDescriptor() {
         return (DescriptorImpl)super.getDescriptor();
     }
 
-    /**
-     * Descriptor for {@link KoratBuilder}. Used as a singleton.
-     * The class is marked as public so that it can be accessed from views.
-     *
-     * <p>
-     * See <tt>src/main/resources/hudson/plugins/korat/KoratBuilder/*.jelly</tt>
-     * for the actual HTML fragment for the configuration screen.
-     */
     @Extension // This indicates to Jenkins that this is an implementation of an extension point.
     public static final class DescriptorImpl extends BuildStepDescriptor<Builder> {
 
-        /**
-         * In order to load the persisted global configuration, you have to 
-         * call load() in the constructor.
-         */
         public DescriptorImpl() {
             load();
         }
@@ -146,9 +112,6 @@ public class KoratBuilder extends Builder {
             return true;
         }
 
-        /**
-         * This humaFn readable name is used in the configuration screen.
-         */
         public String getDisplayName() {
             return "Run Korat";
         }
